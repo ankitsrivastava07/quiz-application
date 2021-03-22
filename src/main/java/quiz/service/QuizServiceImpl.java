@@ -5,12 +5,12 @@ import java.text.NumberFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
 import quiz.controller.QuestionDto;
+import quiz.controller.QuizSubmit;
 import quiz.controller.TestResult;
 import quiz.dao.QuestionDao;
 import quiz.dao.entity.AnswerEntity;
@@ -24,7 +24,7 @@ public class QuizServiceImpl implements QuizService {
 	private QuestionDao questionDao;
 
 	@Override
-	public TestResult submit(Map<Long, String> selectedOptions) {
+	public TestResult submit(List<QuizSubmit> selectedOptions) {
 
 		Integer correctAnswer = 0;
 		Integer inCorrect = 0;
@@ -32,30 +32,28 @@ public class QuizServiceImpl implements QuizService {
 
 		TestResult result = new TestResult();
 
-		Map<Long, String> answers = new HashMap<>();
+		Map<Long, Boolean> map = new HashMap<>();
 
-		list.forEach(ans -> answers.put(ans.getQid().getId(), ans.getAnswer()));
+		list.forEach(ans -> map.put(ans.getOption().getId(), ans.getIsCorrect()));
 
-		for (Entry<Long, String> entry : selectedOptions.entrySet()) {
+		for (QuizSubmit quizSubmit : selectedOptions) {
 
-			Long qid = entry.getKey();
+			if (map.containsKey(quizSubmit.getOptionId()) && map.get(quizSubmit.getOptionId()) == true)
+				correctAnswer++;
+			else
+				inCorrect++;
 
-			if (answers.containsKey(qid))
-
-				if (entry.getValue().equals(answers.get(qid)))
-					correctAnswer++;
-
-				else
-					inCorrect++;
 		}
 
 		result.setAnswered("Answered  " + (correctAnswer + inCorrect));
-		result.setMarks("Marks " + correctAnswer + "/" + "" + answers.size());
-		result.setMesg("Total questions " + list.size());
-		result.setResult("Result " + correctAnswer + "/" + "" + answers.size() + "("
-				+ percentage(Double.valueOf(correctAnswer), Double.valueOf(answers.size())) + "%)");
+		result.setMarks("Marks " + correctAnswer + "/" + "" + list.size());
+		result.setMessage("Total questions " + list.size());
+		result.setResult("Result " + correctAnswer + "/" + "" + list.size() + "(" +
+
+				percentage(Double.valueOf(correctAnswer), Double.valueOf(list.size())) + "%)");
 
 		result.setUnAnswered("UnAnswered " + (list.size() - (correctAnswer + inCorrect)));
+		//result.setCorrectOptions(correctAnswer);
 		return result;
 	}
 

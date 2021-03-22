@@ -24,10 +24,7 @@ public class QuizController {
 	@PostMapping("/submit")
 	public ResponseEntity<?> submit(@RequestBody List<QuizSubmit> selectedOptions) {
 
-		Map<Long, String> map = selectedOptions.stream()
-				.collect(Collectors.toMap(QuizSubmit::getQuestionId, QuizSubmit::getSelectedOption));
-
-		return new ResponseEntity<>(quizService.submit(map), HttpStatus.OK);
+		return new ResponseEntity<>(quizService.submit(selectedOptions), HttpStatus.OK);
 
 	}
 }

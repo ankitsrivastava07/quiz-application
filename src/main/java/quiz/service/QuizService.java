@@ -1,14 +1,13 @@
 package quiz.service;
 
 import java.util.List;
-import java.util.Map;
-
 import quiz.controller.QuestionDto;
+import quiz.controller.QuizSubmit;
 import quiz.controller.TestResult;
 
 public interface QuizService {
 
-	TestResult submit(Map<Long, String> result);
+	TestResult submit(List<QuizSubmit> selectedOptions);
 	
 	List<QuestionDto> getAllQuestions();
 
