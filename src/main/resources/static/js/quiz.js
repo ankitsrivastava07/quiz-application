@@ -85,12 +85,13 @@ $("#add-question").submit(function() {
 		data: JSON.stringify(formData),
 
 		success: function(response) {
-			alert(response)
+			alert("Successfull added")
 		},
 		error: function(error) {
 			alert("Something went wrong  " + error.status)
 		}
 	});
+$("#add-question")[0].reset();
 
 	return false
 });
