@@ -41,7 +41,7 @@ public class QuestionDaoImpl implements QuestionDao {
 		List<AnswerEntity> answers = new ArrayList<>();
 		AnswerEntity ans = new AnswerEntity();
 
-		OptionsEntity opt = optionRepo.findByOpt(questionDto.getAnswer().getOption().getOpt());
+		OptionsEntity opt = optionRepo.findByOpt(questionDto.getAnswer().getOption().getOpt(), entity.getId());
 
 		ans.setAnswer(opt.getOpt());
 		ans.setIsCorrect(Boolean.TRUE);
