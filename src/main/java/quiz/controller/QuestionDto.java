@@ -10,4 +10,5 @@ public class QuestionDto {
 	private Long id;
 	private String question;
 	private List<OptionDto> options;
+	private AnswersDto answer;
 }

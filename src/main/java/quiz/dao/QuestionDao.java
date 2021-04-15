@@ -7,4 +7,7 @@ import quiz.controller.QuestionDto;
 public interface QuestionDao {
 
 	List<QuestionDto> getAllQuestion();
+
+	void createQuestion(QuestionDto questionDto);
+
 }

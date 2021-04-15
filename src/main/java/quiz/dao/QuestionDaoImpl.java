@@ -1,9 +1,17 @@
 package quiz.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.stereotype.Repository;
+
 import lombok.AllArgsConstructor;
 import quiz.controller.QuestionDto;
+import quiz.dao.entity.AnswerEntity;
+import quiz.dao.entity.OptionsEntity;
+import quiz.dao.entity.QuestionEntity;
+import quiz.dao.repository.AnswerRepo;
+import quiz.dao.repository.OptionRepo;
 import quiz.dao.repository.QuestionRepo;
 import quiz.translator.ObjectTranslate;
 
@@ -13,6 +21,8 @@ public class QuestionDaoImpl implements QuestionDao {
 
 	private QuestionRepo questionRepo;
 	private ObjectTranslate object;
+	private OptionRepo optionRepo;
+	private AnswerRepo answerRepo;
 
 	@Override
 	public List<QuestionDto> getAllQuestion() {
@@ -22,4 +32,22 @@ public class QuestionDaoImpl implements QuestionDao {
 		return list;
 	}
 
+	@Override
+	public void createQuestion(QuestionDto questionDto) {
+		QuestionEntity entity = object.translateToQuestionEntity(questionDto);
+
+		entity = questionRepo.save(entity);
+
+		List<AnswerEntity> answers = new ArrayList<>();
+		AnswerEntity ans = new AnswerEntity();
+
+		OptionsEntity opt = optionRepo.findByOpt(questionDto.getAnswer().getOption().getOpt());
+
+		ans.setAnswer(opt.getOpt());
+		ans.setIsCorrect(Boolean.TRUE);
+		ans.setOption(opt);
+		ans.setQid(entity);
+		answers.add(ans);
+		answerRepo.saveAll(answers);
+	}
 }

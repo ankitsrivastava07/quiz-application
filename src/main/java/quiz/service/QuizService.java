@@ -8,8 +8,8 @@ import quiz.controller.TestResult;
 public interface QuizService {
 
 	TestResult submit(List<QuizSubmit> selectedOptions);
-	
+
 	List<QuestionDto> getAllQuestions();
 
+	public void createQuestion(QuestionDto questionDto);
 }
-

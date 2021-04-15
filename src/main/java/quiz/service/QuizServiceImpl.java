@@ -15,6 +15,7 @@ import quiz.controller.TestResult;
 import quiz.dao.QuestionDao;
 import quiz.dao.entity.AnswerEntity;
 import quiz.dao.repository.AnswerRepo;
+import quiz.translator.ObjectTranslate;
 
 @Service
 @AllArgsConstructor
@@ -22,6 +23,7 @@ public class QuizServiceImpl implements QuizService {
 
 	private AnswerRepo answerRepo;
 	private QuestionDao questionDao;
+	private ObjectTranslate objectTranslate;
 
 	@Override
 	public TestResult submit(List<QuizSubmit> selectedOptions) {
@@ -53,7 +55,7 @@ public class QuizServiceImpl implements QuizService {
 				percentage(Double.valueOf(correctAnswer), Double.valueOf(list.size())) + "%)");
 
 		result.setUnAnswered("UnAnswered " + (list.size() - (correctAnswer + inCorrect)));
-		//result.setCorrectOptions(correctAnswer);
+		// result.setCorrectOptions(correctAnswer);
 		return result;
 	}
 
@@ -74,5 +76,11 @@ public class QuizServiceImpl implements QuizService {
 		Double result = Double.valueOf(nf.format(prc));
 
 		return result;
+	}
+
+	public void createQuestion(QuestionDto questionDto) {
+
+		questionDao.createQuestion(questionDto);
+
 	}
 }

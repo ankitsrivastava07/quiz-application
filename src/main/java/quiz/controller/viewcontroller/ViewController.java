@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 import quiz.service.QuizService;
 
 @RestController
-@RequestMapping("quiz")
+@RequestMapping("/quiz")
 @AllArgsConstructor
 public class ViewController {
 
@@ -22,6 +22,15 @@ public class ViewController {
 		mv.setViewName("quiz");
 
 		mv.addObject("questions", quizService.getAllQuestions());
+
+		return mv;
+	}
+	
+	@GetMapping("/add-question")
+	public ModelAndView addQuestionView() {
+
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("add-question");
 
 		return mv;
 	}

@@ -27,8 +27,10 @@ public class AnswerEntity {
 	@JoinColumn(name = "qid", referencedColumnName = "id")
 	private QuestionEntity qid;
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="opt_id",referencedColumnName = "id")
+	@JoinColumn(name="option_id")
 	private OptionsEntity option;
 	@Column(name = "is_correct")
 	private Boolean isCorrect;
+	
+	private String answer;
 }

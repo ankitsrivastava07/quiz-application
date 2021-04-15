@@ -55,5 +55,42 @@ function submit(list) {
 		}
 
 	});
-
 }
+
+$("#add-question").submit(function() {
+
+	var options = []
+
+	$("#add-question input[type=text]").each(function() {
+
+		options.push(this.value);
+	});
+
+	var optId = $("#answer").val()
+
+	var formData = {
+		
+		"question": $("#question").val(),
+		"opt1": $("#opt1").val(),
+		"opt2": $("#opt2").val(),
+		"opt3": $("#opt3").val(),
+		"opt4": $("#opt4").val(),
+		"answer": document.getElementById(optId).value
+	}
+
+	$.ajax({
+		type: "POST",
+		url: "/quiz/add-question",
+		contentType: "application/json",
+		data: JSON.stringify(formData),
+
+		success: function(response) {
+			alert(response)
+		},
+		error: function(error) {
+			alert("Something went wrong  " + error.status)
+		}
+	});
+
+	return false
+});

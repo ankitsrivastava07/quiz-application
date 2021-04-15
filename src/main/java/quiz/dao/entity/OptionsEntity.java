@@ -25,5 +25,4 @@ public class OptionsEntity {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="qid",referencedColumnName = "id")
 	private QuestionEntity qid;
-	
 }

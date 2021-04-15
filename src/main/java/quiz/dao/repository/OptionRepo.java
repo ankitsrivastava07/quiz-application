@@ -5,4 +5,5 @@ import quiz.dao.entity.OptionsEntity;
 
 public interface OptionRepo extends JpaRepository<OptionsEntity,Long> {
 
+	OptionsEntity findByOpt(String opt);
 }
