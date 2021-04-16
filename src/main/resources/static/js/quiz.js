@@ -7,8 +7,7 @@ $("#quizForm").submit(function() {
 
 		selectedOptions = {
 
-			"questionId": $(this).attr('data-id'),
-			"selectedOption": $(this).val()
+			"optionId": $(this).attr('data-id'),
 
 		}
 		list.push(selectedOptions);
@@ -57,41 +56,101 @@ function submit(list) {
 	});
 }
 
-$("#add-question").submit(function() {
+$(document).ready(function() {
 
-	var options = []
+$("#add-question").validate({
+      ignoreTitle: true,
 
-	$("#add-question input[type=text]").each(function() {
+     rules:{
+      question:{
+      required:true,
+      minlength:7
+      },
+      opt1:{
+      required:true,
+      },
+      
+      opt2:{
+      required:true,
+      },   
+      
+      opt3:{
+      required:true,
+      },   
+      
+      opt4:{
+      required:true,
+      },
+      
+      answer:{
+       required: true
+      } 
+        
+     },
+     messages:{
+   
+     question:{
+     required:"Please Enter question here",
+     },
+     
+     opt1:{
+      required:"Please Enter Option1",
+     },
+     
+      opt2:{
+      required:"Please Enter Option2",
+     },
+     
+      opt3:{
+      required:"Please Enter Option 3",
+      minlength:"Option at least 15 characters long"
+     },
+     
+      opt4:{
+      required:"Please Enter Option 4",
+     },
+     
+     answer:{
+     required:"Please select answer"
+     }
+     },
+     
+     submitHandler: function(form) {
+     
+     var options = []
 
-		options.push(this.value);
-	});
+		$("#add-question input[type=text]").each(function() {
 
-	var optId = $("#answer").val()
+			options.push(this.value);
+		});
 
-	var formData = {
-		
-		"question": $("#question").val(),
-		"opt1": $("#opt1").val(),
-		"opt2": $("#opt2").val(),
-		"opt3": $("#opt3").val(),
-		"opt4": $("#opt4").val(),
-		"answer": document.getElementById(optId).value
-	}
+		var optId = $("#answer").val()
 
-	$.ajax({
-		type: "POST",
-		url: "/quiz/add-question",
-		contentType: "application/json",
-		data: JSON.stringify(formData),
+		var formData = {
 
-		success: function(response) {
-			alert("Successfully added")
-		},
-		error: function(error) {
-			alert("Something went wrong please try again later")
+			"question": $("#question").val(),
+			"opt1": $("#opt1").val(),
+			"opt2": $("#opt2").val(),
+			"opt3": $("#opt3").val(),
+			"opt4": $("#opt4").val(),
+			"answer": document.getElementById(optId).value
 		}
-	});
-$("#add-question")[0].reset();
 
-	return false
+		$.ajax({
+			type: "POST",
+			url: "/quiz/add-question",
+			contentType: "application/json",
+			data: JSON.stringify(formData),
+
+			success: function(response) {
+				alert(response)
+			},
+			error: function(error) {
+				alert("Something went wrong  please try again later")
+			}
+		})
+     
+     }
+     
+});
 });
