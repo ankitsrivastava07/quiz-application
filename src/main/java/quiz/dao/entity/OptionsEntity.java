@@ -1,5 +1,6 @@
 package quiz.dao.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -21,6 +22,7 @@ public class OptionsEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@Column(unique = true)
 	private String opt;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="qid",referencedColumnName = "id")

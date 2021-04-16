@@ -21,7 +21,6 @@ public class QuestionDaoImpl implements QuestionDao {
 
 	private QuestionRepo questionRepo;
 	private ObjectTranslate object;
-	private OptionRepo optionRepo;
 	private AnswerRepo answerRepo;
 
 	@Override
@@ -38,16 +37,5 @@ public class QuestionDaoImpl implements QuestionDao {
 
 		entity = questionRepo.save(entity);
 
-		List<AnswerEntity> answers = new ArrayList<>();
-		AnswerEntity ans = new AnswerEntity();
-
-		OptionsEntity opt = optionRepo.findByOpt(questionDto.getAnswer().getOption().getOpt(), entity.getId());
-
-		ans.setAnswer(opt.getOpt());
-		ans.setIsCorrect(Boolean.TRUE);
-		ans.setOption(opt);
-		ans.setQid(entity);
-		answers.add(ans);
-		answerRepo.saveAll(answers);
 	}
 }

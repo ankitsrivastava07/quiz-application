@@ -24,13 +24,8 @@ public class AnswerEntity {
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "qid", referencedColumnName = "id")
+	@JoinColumn(name="qid",referencedColumnName = "id")
 	private QuestionEntity qid;
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="option_id")
-	private OptionsEntity option;
-	@Column(name = "is_correct")
-	private Boolean isCorrect;
-	
+	@Column(name = "answer")
 	private String answer;
 }

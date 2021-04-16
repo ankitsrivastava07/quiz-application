@@ -29,6 +29,7 @@ public class QuestionEntity {
 	@JoinColumn(name = "qid", referencedColumnName = "id")
 	private List<OptionsEntity> options;
 
-	@OneToMany(mappedBy="qid",cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="qid",referencedColumnName = "id")
 	private List<AnswerEntity> answer;
 }

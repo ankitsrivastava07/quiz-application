@@ -7,8 +7,6 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.databind.util.ArrayBuilders.BooleanBuilder;
-
 import quiz.controller.AnswersDto;
 import quiz.controller.OptionDto;
 import quiz.controller.QuestionDto;
@@ -36,8 +34,6 @@ public class ObjectTranslate {
 
 		QuestionDto questionDto = new QuestionDto();
 		AnswersDto answer = new AnswersDto();
-		OptionDto ans = new OptionDto();
-
 		List<OptionDto> list = new ArrayList<>();
 
 		OptionDto opt1 = new OptionDto();
@@ -60,10 +56,7 @@ public class ObjectTranslate {
 
 		questionDto.setOptions(list);
 
-		ans.setOpt(question.getAnswer());
-
-		answer.setOption(ans);
-
+		answer.setAnswer(question.getAnswer());
 		questionDto.setAnswer(answer);
 
 		return questionDto;
@@ -74,12 +67,11 @@ public class ObjectTranslate {
 		QuestionEntity ques = new QuestionEntity();
 		AnswerEntity ans = new AnswerEntity();
 
-		OptionsEntity optionEn = new OptionsEntity();
-
-		List<OptionsEntity> optionEntity = new ArrayList<>();
+		List<AnswerEntity> ansEn = new ArrayList<>();
 
 		ques.setQuestion(questionDto.getQuestion());
 
+		List<OptionsEntity> optionEntity = new ArrayList<>();
 		questionDto.getOptions().stream().forEach(opt -> {
 			OptionsEntity op = new OptionsEntity();
 			op.setOpt(opt.getOpt());
@@ -89,10 +81,9 @@ public class ObjectTranslate {
 
 		ques.setOptions(optionEntity);
 
-		optionEn.setOpt(questionDto.getAnswer().getOption().getOpt());
-		ans.setOption(optionEn);
-		ans.setIsCorrect(Boolean.TRUE);
-
+		ans.setAnswer(questionDto.getAnswer().getAnswer());
+		ansEn.add(ans);
+		ques.setAnswer(ansEn);
 		return ques;
 
 	}

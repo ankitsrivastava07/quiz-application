@@ -27,27 +27,24 @@ public class QuizServiceImpl implements QuizService {
 
 	private AnswerRepo answerRepo;
 	private QuestionDao questionDao;
-	private ObjectTranslate objectTranslate;
-	private JdbcTemplate jdbcTemplate;
-	private EntityManager entityManager;
 
 	@Override
 	public TestResult submit(List<QuizSubmit> selectedOptions) {
 
-		String sql = "select opt_id,is_correct from answers where opt_id=?";
 		Integer correctAnswer = 0;
 		Integer inCorrect = 0;
-		List<Long> optionIds = answerRepo.getAllAnswers();
+		List<AnswerEntity> answers = answerRepo.findAll();
 
 		TestResult result = new TestResult();
 
-		Map<Long, Boolean> map = new HashMap<>();
+		Map<String, Long> map = new HashMap<>();
 
-		optionIds.forEach(option -> map.put(option, true));
+		answers.stream().forEach(ans -> map.put(ans.getAnswer(),ans.getQid().getId()));
 
 		for (QuizSubmit quizSubmit : selectedOptions) {
 
-			if (map.containsKey(quizSubmit.getOptionId()) && map.get(quizSubmit.getOptionId()) == true)
+			if (map.containsKey(quizSubmit.getAnswer())
+					&& map.get(quizSubmit.getAnswer())==quizSubmit.getQuestionId())
 				correctAnswer++;
 			else
 				inCorrect++;
@@ -55,13 +52,13 @@ public class QuizServiceImpl implements QuizService {
 		}
 
 		result.setAnswered("Answered  " + (correctAnswer + inCorrect));
-		result.setMarks("Marks " + correctAnswer + "/" + "" + optionIds.size());
-		result.setMessage("Total questions " + optionIds.size());
-		result.setResult("Result " + correctAnswer + "/" + "" + optionIds.size() + "(" +
+		result.setMarks("Marks " + correctAnswer + "/" + "" + answers.size());
+		result.setMessage("Total questions " + answers.size());
+		result.setResult("Result " + correctAnswer + "/" + "" + answers.size() + "(" +
 
-				percentage(Double.valueOf(correctAnswer), Double.valueOf(optionIds.size())) + "%)");
+				percentage(Double.valueOf(correctAnswer), Double.valueOf(answers.size())) + "%)");
 
-		result.setUnAnswered("UnAnswered " + (optionIds.size() - (correctAnswer + inCorrect)));
+		result.setUnAnswered("UnAnswered " + (answers.size() - (correctAnswer + inCorrect)));
 		// result.setCorrectOptions(correctAnswer);
 		return result;
 	}

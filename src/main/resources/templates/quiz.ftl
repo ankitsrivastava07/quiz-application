@@ -13,7 +13,7 @@ table.center {
 <body>
  <form id="quizForm" method="post">
         <script src="/js/script.js"></script>
-        <center>  <span id=res></span></center>
+        <center>  <span id=res style="color:green;"></span></center>
  <table class='center'>
    <tr>
    <#assign cnt=0>
@@ -25,7 +25,7 @@ table.center {
     </tr>
     <tr>
    <#list question.options as opt>
-    <td><b>${str[asci]}.)</b><input type="radio" name="option${opt.qid.id}" data-id="${opt.id}"> ${opt.opt}</td>
+    <td><b>${str[asci]}.)</b><input type="radio" name="option${opt.qid.id}" data-id="${opt.qid.id}" value="${opt.opt}"> ${opt.opt}</td>
       <#assign asci++>
    </tr>
     </#list>
