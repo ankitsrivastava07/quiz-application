@@ -37,14 +37,14 @@ public class QuizServiceImpl implements QuizService {
 
 		TestResult result = new TestResult();
 
-		Map<String, Long> map = new HashMap<>();
+		Map<Long, String> map = new HashMap<>();
 
-		answers.stream().forEach(ans -> map.put(ans.getAnswer(),ans.getQid().getId()));
+		answers.stream().forEach(ans -> map.put(ans.getQid().getId(), ans.getAnswer()));
 
 		for (QuizSubmit quizSubmit : selectedOptions) {
 
-			if (map.containsKey(quizSubmit.getAnswer())
-					&& map.get(quizSubmit.getAnswer())==quizSubmit.getQuestionId())
+			if (map.containsKey(quizSubmit.getQuestionId())
+					&& map.get(quizSubmit.getQuestionId()).equals(quizSubmit.getAnswer()))
 				correctAnswer++;
 			else
 				inCorrect++;

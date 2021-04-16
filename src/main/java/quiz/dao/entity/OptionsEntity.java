@@ -22,7 +22,6 @@ public class OptionsEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(unique = true)
 	private String opt;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="qid",referencedColumnName = "id")
