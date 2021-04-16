@@ -85,10 +85,10 @@ $("#add-question").submit(function() {
 		data: JSON.stringify(formData),
 
 		success: function(response) {
-			alert("Successfull added")
+			alert("Successfully added")
 		},
 		error: function(error) {
-			alert("Something went wrong  " + error.status)
+			alert("Something went wrong please try again later")
 		}
 	});
 $("#add-question")[0].reset();
