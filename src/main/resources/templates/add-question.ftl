@@ -3,7 +3,7 @@
 <head>
   <title>Add Question</title>
   <script src="/js/script.js"></script>
-  <script src="/js/validation/jquery.validate.js"></script>
+  <script src="/js/jquery.validate.js"></script>
 
 </head>
 <style>
