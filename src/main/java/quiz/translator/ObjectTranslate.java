@@ -1,7 +1,9 @@
 package quiz.translator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
@@ -11,7 +13,6 @@ import quiz.controller.AnswersDto;
 import quiz.controller.OptionDto;
 import quiz.controller.QuestionDto;
 import quiz.controller.question.CreateQuestion;
-import quiz.dao.entity.AnswerEntity;
 import quiz.dao.entity.OptionsEntity;
 import quiz.dao.entity.QuestionEntity;
 
@@ -36,28 +37,38 @@ public class ObjectTranslate {
 		AnswersDto answer = new AnswersDto();
 		List<OptionDto> list = new ArrayList<>();
 
+		Map<String, OptionDto> map = new HashMap<>();
+
 		OptionDto opt1 = new OptionDto();
-		opt1.setOpt(question.getOpt1());
+		opt1.setOpt(question.getOption1());
+		opt1.setIsCorrect(Boolean.FALSE);
+		map.put("option1", opt1);
 		list.add(opt1);
 
 		OptionDto opt2 = new OptionDto();
-		opt2.setOpt(question.getOpt2());
+		opt2.setOpt(question.getOption2());
+		opt2.setIsCorrect(Boolean.FALSE);
+		map.put("option2", opt2);
 		list.add(opt2);
 
 		OptionDto opt3 = new OptionDto();
-		opt3.setOpt(question.getOpt3());
+		opt3.setOpt(question.getOption3());
+		opt3.setIsCorrect(Boolean.FALSE);
+		map.put("option3", opt3);
 		list.add(opt3);
 
 		OptionDto opt4 = new OptionDto();
-		opt4.setOpt(question.getOpt4());
+		opt4.setOpt(question.getOption4());
+		opt4.setIsCorrect(Boolean.FALSE);
+		map.put("option4", opt4);
 		list.add(opt4);
+
+		OptionDto opt = map.get(question.getCorrectOption());
+		opt.setIsCorrect(Boolean.TRUE);
 
 		questionDto.setQuestion(question.getQuestion());
 
 		questionDto.setOptions(list);
-
-		answer.setAnswer(question.getAnswer());
-		questionDto.setAnswer(answer);
 
 		return questionDto;
 	}
@@ -65,25 +76,20 @@ public class ObjectTranslate {
 	public QuestionEntity translateToQuestionEntity(QuestionDto questionDto) {
 
 		QuestionEntity ques = new QuestionEntity();
-		AnswerEntity ans = new AnswerEntity();
-
-		List<AnswerEntity> ansEn = new ArrayList<>();
 
 		ques.setQuestion(questionDto.getQuestion());
 
 		List<OptionsEntity> optionEntity = new ArrayList<>();
 		questionDto.getOptions().stream().forEach(opt -> {
+
 			OptionsEntity op = new OptionsEntity();
 			op.setOpt(opt.getOpt());
+			op.setIsCorrect(opt.getIsCorrect());
 			optionEntity.add(op);
 
 		});
 
 		ques.setOptions(optionEntity);
-
-		ans.setAnswer(questionDto.getAnswer().getAnswer());
-		ansEn.add(ans);
-		ques.setAnswer(ansEn);
 		return ques;
 
 	}

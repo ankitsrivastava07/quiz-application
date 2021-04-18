@@ -6,9 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
-
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import lombok.AllArgsConstructor;
@@ -16,35 +13,38 @@ import quiz.controller.QuestionDto;
 import quiz.controller.QuizSubmit;
 import quiz.controller.TestResult;
 import quiz.dao.QuestionDao;
-import quiz.dao.entity.AnswerEntity;
 import quiz.dao.entity.OptionsEntity;
-import quiz.dao.repository.AnswerRepo;
-import quiz.translator.ObjectTranslate;
+import quiz.dao.repository.OptionRepo;
+import quiz.dao.repository.QuestionRepo;
 
 @Service
 @AllArgsConstructor
 public class QuizServiceImpl implements QuizService {
 
-	private AnswerRepo answerRepo;
 	private QuestionDao questionDao;
+	private QuestionRepo questionRepository;
+	private OptionRepo optionRepository;
 
 	@Override
 	public TestResult submit(List<QuizSubmit> selectedOptions) {
 
 		Integer correctAnswer = 0;
 		Integer inCorrect = 0;
-		List<AnswerEntity> answers = answerRepo.findAll();
+
+		List<OptionsEntity> options = optionRepository.getAllCorrectAnswers(Boolean.TRUE);
+		Long totalQuestions = questionRepository.countTotalQuestions();
+
+		Map<Long, Boolean> map = new HashMap<>();
+
+		options.stream().forEach(opt -> map.put(opt.getId(), true));
 
 		TestResult result = new TestResult();
 
-		Map<Long, String> map = new HashMap<>();
-
-		answers.stream().forEach(ans -> map.put(ans.getQid().getId(), ans.getAnswer()));
-
 		for (QuizSubmit quizSubmit : selectedOptions) {
 
-			if (map.containsKey(quizSubmit.getQuestionId())
-					&& map.get(quizSubmit.getQuestionId()).equals(quizSubmit.getAnswer()))
+			long questionId = quizSubmit.getOptionId();
+
+			if (map.containsKey(questionId) && map.get(questionId) == true)
 				correctAnswer++;
 			else
 				inCorrect++;
@@ -52,20 +52,14 @@ public class QuizServiceImpl implements QuizService {
 		}
 
 		result.setAnswered("Answered  " + (correctAnswer + inCorrect));
-		result.setMarks("Marks " + correctAnswer + "/" + "" + answers.size());
-		result.setMessage("Total questions " + answers.size());
-		result.setResult("Result " + correctAnswer + "/" + "" + answers.size() + "(" +
+		result.setMarks(String.valueOf(correctAnswer));
+		result.setMessage("Total questions " + totalQuestions);
+		result.setResult("Result " + correctAnswer + "/" + "" + totalQuestions + "(" +
 
-				percentage(Double.valueOf(correctAnswer), Double.valueOf(answers.size())) + "%)");
+				percentage(Double.valueOf(correctAnswer), Double.valueOf(totalQuestions)) + "%)");
 
-		result.setUnAnswered("UnAnswered " + (answers.size() - (correctAnswer + inCorrect)));
-		// result.setCorrectOptions(correctAnswer);
+		result.setUnAnswered("UnAnswered " + (totalQuestions - (correctAnswer + inCorrect)));
 		return result;
-	}
-
-	public List<QuestionDto> getAllQuestions() {
-		List<QuestionDto> list = questionDao.getAllQuestion();
-		return list;
 	}
 
 	public Double percentage(Double correctAnswer, Double totalQuestions) {
@@ -86,5 +80,10 @@ public class QuizServiceImpl implements QuizService {
 
 		questionDao.createQuestion(questionDto);
 
+	}
+
+	@Override
+	public List<QuestionDto> getAllQuestions() {
+		return questionDao.getAllQuestion();
 	}
 }

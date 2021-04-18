@@ -8,4 +8,5 @@ public class OptionDto {
 	private Long id;
 	private String opt;
 	private QuestionDto qid;
+	private Boolean isCorrect;
 }

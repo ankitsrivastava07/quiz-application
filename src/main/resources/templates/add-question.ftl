@@ -45,7 +45,7 @@ font-size: 14px;
 Option 1:
 </td>
 <td>
-<input type="text" id="opt1" name="opt1" autocomplete=off title="Option1">
+<input type="text" id="opt1" name="opt1" data-id="opt1" autocomplete=off title="Option1">
 </td>
 </tr>
 <tr>
@@ -53,7 +53,7 @@ Option 1:
 Option 2:
 </td>
 <td>
-<input type="text" id="opt2" name="opt2" autocomplete=off title="Option2">
+<input type="text" id="opt2" name="opt2" data-id="opt2" autocomplete=off title="Option2">
 </td>
 </tr>
 <tr>
@@ -61,7 +61,7 @@ Option 2:
 Option 3:
 </td>
 <td>
-<input type="text" id="opt3" name="opt3" autocomplete=off title="Option3">
+<input type="text" id="opt3" name="opt3" data-id="opt3" autocomplete=off title="Option3">
 </td>
 </tr>
 <tr>
@@ -69,7 +69,7 @@ Option 3:
 Option 4:
 </td>
 <td>
-<input type="text" id="opt4" name="opt4" autocomplete=off title="Option4">
+<input type="text" id="opt4" name="opt4" data-id="opt4" autocomplete=off title="Option4">
 </td>
 </tr>
 </tr>
@@ -80,10 +80,10 @@ Answer :
 <td>
 <select name="answer" id="answer" title="Answer">
     <option value="">Select Answer</option>
-    <option value="opt1">Options 1</option>
-    <option value="opt2">Options 2</option>
-    <option value="opt3">Options 3</option>
-    <option value="opt4">Options 4</option></td>
+    <option value="option1">Options 1</option>
+    <option value="option2">Options 2</option>
+    <option value="option3">Options 3</option>
+    <option value="option4">Options 4</option></td>
 </select>
 </tr>
 <tr>

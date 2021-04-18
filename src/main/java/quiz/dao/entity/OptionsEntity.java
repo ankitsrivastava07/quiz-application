@@ -1,5 +1,6 @@
 package quiz.dao.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,14 +16,17 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name="options")
+@Table(name = "options")
 public class OptionsEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String opt;
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="qid",referencedColumnName = "id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "qid", referencedColumnName = "id")
 	private QuestionEntity qid;
+
+	@Column(name = "is_correct", columnDefinition = "boolean default false")
+	private Boolean isCorrect;
 }

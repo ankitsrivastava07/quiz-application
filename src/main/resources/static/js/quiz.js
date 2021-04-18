@@ -7,8 +7,8 @@ $("#quizForm").submit(function() {
 
 		selectedOptions = {
 
-			"questionId": $(this).attr('data-id'),
-			"answer": $(this).val()
+			"optionId": $(this).attr('data-id'),
+			"answer": $(this).attr('data-slug')
 		}
 		list.push(selectedOptions);
 
@@ -32,16 +32,14 @@ function submit(list) {
 			$(response).each(function(index, item) {
 
 				var text = $("#res").html();
+				$('#marks-msg').html("Number of correct answers ");
+				$('#marks').html(item.marks);
 
-				if (text != "")
-					$("#res").html("")
+				$('#answered').html("Given answers " + item.answered);
+				$('#unAnswered').html(item.unAnswered);
+				$('#result').html(item.result);
 
-				$('#res').append(
-					'<b></td><td>&nbsp<br><b>' + item.marks +
-					'<b><tr><td>&nbsp<br><b>' + item.answered + ' <br> ' + item.unAnswered + '   ' +
-					'</td><td><br>' + item.result +
-					'</td></tr>'
-				)
+				$("#modal").modal("show");
 
 			});
 
@@ -57,6 +55,7 @@ function submit(list) {
 }
 
 $(document).ready(function() {
+
 
 	$("#add-question").validate({
 		ignoreTitle: true,
@@ -124,17 +123,49 @@ $(document).ready(function() {
 				options.push(this.value);
 			});
 
-			var optId = $("#answer").val()
+			var correctOption = $("#answer").val()
 
 			var formData = {
 
 				"question": $("#question").val(),
-				"opt1": $("#opt1").val(),
-				"opt2": $("#opt2").val(),
-				"opt3": $("#opt3").val(),
-				"opt4": $("#opt4").val(),
-				"answer": document.getElementById(optId).value
+
+				"option1": $("#opt1").val(),
+				"option2": $("#opt2").val(),
+				"option3": $("#opt3").val(),
+				"option4": $("#opt4").val(),
+
+				"correctOption": correctOption
 			}
+
+			let map = new Map()
+
+			if (map.has(formData.option1)) {
+				alert("Duplicate Option 1: containing value " + formData.opt1)
+				return false;
+			}
+
+			map.set(formData.option1, 1);
+
+			if (map.has(formData.option2)) {
+				alert("Duplicate Option 2: containing value " + formData.opt2)
+				return false;
+			}
+
+			map.set(formData.option2, 1);
+
+			if (map.has(formData.option3)) {
+				alert("Duplicate Option 3: containing value " + formData.opt3)
+				return false;
+			}
+
+			map.set(formData.option3, 1);
+
+			if (map.has(formData.option4)) {
+				alert("Duplicate Option 4: containing value " + formData.opt4)
+				return false;
+			}
+
+			map.set(formData.option4, 1);
 
 			$.ajax({
 				type: "POST",
@@ -153,4 +184,29 @@ $(document).ready(function() {
 		}
 
 	});
+
 });
+
+function getNextPage(offset) {
+
+	formdata = {
+		"offSet": offset,
+		"limit": 3
+	}
+
+	$.ajax({
+		type: "GET",
+		url: "/quiz",
+		contentType: "application/json",
+		data: formdata,
+
+		success: function(response) {
+			alert("Successfully added")
+		},
+		error: function(error) {
+			alert("Something went wrong  please try again later")
+		}
+	})
+
+}
+

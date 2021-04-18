@@ -7,11 +7,11 @@ public class CreateQuestion {
 
 	private String question;
 
-	private String opt1;
-	private String opt2;
-	private String opt3;
-	private String opt4;
+	private String option1;
+	private String option2;
+	private String option3;
+	private String option4;
 
-	private String answer;
+	private String correctOption;
 
 }

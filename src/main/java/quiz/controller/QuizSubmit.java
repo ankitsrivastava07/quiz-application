@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public class QuizSubmit {
 
-	private Long questionId;
+	private Long optionId;
 	private String answer;
 }
