@@ -8,13 +8,13 @@ $("#quizForm").submit(function() {
 		selectedOptions = {
 
 			"optionId": $(this).attr('data-id'),
-			"answer": $(this).attr('data-slug')
 		}
 		list.push(selectedOptions);
 
 	});
 
 	submit(list)
+	$("#quizForm")[0].reset();
 	return false
 });
 
@@ -140,28 +140,28 @@ $(document).ready(function() {
 			let map = new Map()
 
 			if (map.has(formData.option1)) {
-				alert("Duplicate Option 1: containing value " + formData.opt1)
+				alert("Duplicate Option 1: containing value " + formData.option1)
 				return false;
 			}
 
 			map.set(formData.option1, 1);
 
 			if (map.has(formData.option2)) {
-				alert("Duplicate Option 2: containing value " + formData.opt2)
+				alert("Duplicate Option 2: containing value " + formData.option2)
 				return false;
 			}
 
 			map.set(formData.option2, 1);
 
 			if (map.has(formData.option3)) {
-				alert("Duplicate Option 3: containing value " + formData.opt3)
+				alert("Duplicate Option 3: containing value " + formData.option3)
 				return false;
 			}
 
 			map.set(formData.option3, 1);
 
 			if (map.has(formData.option4)) {
-				alert("Duplicate Option 4: containing value " + formData.opt4)
+				alert("Duplicate Option 4: containing value " + formData.option4)
 				return false;
 			}
 

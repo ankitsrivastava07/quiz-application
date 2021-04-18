@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+  <title>Java Quiz</title>
 <script src="/js/script.js"></script>
 <script src="/js/jquery.validate.js"></script>
 
@@ -77,7 +78,7 @@ table.center {
     </tr>
     <tr>
    <#list question.options as opt>
-    <td><b>${str[asci]}.)</b><input type="radio" name="option${opt.qid.id}" data-id="${opt.id}" value="${opt.opt}"> ${opt.opt}</td>
+    <td><b>${str[asci]}.)</b><label><input type="radio" class="check" name="option${opt.qid.id}" data-id="${opt.id}" value="checkbox${opt.id}" > ${opt.opt}</label></td>
       <#assign asci++>
    </tr>
     </#list>
