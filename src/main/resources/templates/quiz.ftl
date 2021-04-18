@@ -85,7 +85,7 @@ table.center {
     </#list>
      <input type="hidden" id="page" value=${cnt} />   
      <tr>
-   <td></td> <td><input type="submit" class="btn btn-secondary" value="Submit"></td></t>
+   <td><input type="submit" class="btn btn-secondary" value="Submit"></td></t>
    </tr>
   </table>
  </form>
