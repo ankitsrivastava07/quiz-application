@@ -26,11 +26,13 @@ function submit(list) {
 		dataType: "json",
 		contentType: "application/json",
 		data: JSON.stringify(list),
-
+		beforeSend: function() {
+			//showGIF();
+			//$('#response').html("<img src='/images/loading.gif' />");
+		},
 		success: function(response) {
-
+			//removeLoader();
 			$(response).each(function(index, item) {
-
 				var text = $("#res").html();
 				$('#marks-msg').html("Number of correct answers ");
 				$('#marks').html(item.marks);
@@ -39,7 +41,7 @@ function submit(list) {
 				$('#unAnswered').html(item.unAnswered);
 				$('#result').html(item.result);
 
-				$("#modal").modal("show");
+				$("#modal-fade").modal("show");
 
 			});
 
@@ -210,3 +212,27 @@ function getNextPage(offset) {
 
 }
 
+
+function removeLoader() {
+
+	$("#loadingDiv").fadeOut(300, function() {
+		// fadeOut complete. Remove the loading div
+
+		$("#loadingDiv").remove(); //makes page more lightweight 
+
+		showPage();
+		$('.center').show();
+	});
+}
+
+function showGIF() {
+
+	//$('.center').hide();
+	
+	setTimeout(removeLoader, 200); //wait for page load PLUS two seconds.
+
+}
+
+function showPage() {
+	document.getElementById("loader").style.display = "none";
+}
