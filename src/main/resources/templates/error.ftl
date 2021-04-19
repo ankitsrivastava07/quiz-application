@@ -29,8 +29,6 @@ body { background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAA
                 The page you are looking for was not found.
                 </div>
                 <div class="error-actions">
-                    <a href="/basic-quiz.herokuapp.com/quiz" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
-                        Take Me Home </a>
                 </div>
             </div>
         </div>
