@@ -9,13 +9,13 @@ import lombok.AllArgsConstructor;
 import quiz.service.QuizService;
 
 @RestController
-@RequestMapping("/quiz")
+@RequestMapping("")
 @AllArgsConstructor
 public class ViewController {
 
 	private QuizService quizService;
 
-	@GetMapping
+	@GetMapping("/")
 	public ModelAndView view() {
 
 		ModelAndView mv = new ModelAndView();
