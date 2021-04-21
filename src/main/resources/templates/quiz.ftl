@@ -13,11 +13,38 @@
 <script src="/js/popper.min.js"></script>
 
     <style>
+  
+    
+
+.td-option{
+padding-top: 0px;
+    padding-right: 7px;
+    padding-bottom: 7px;
+    padding-left: 97px;
+}
+
+.question{
+padding-left: 82px;
+}
+
+.whole-page{
+
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+
+border:0;
+
+padding:10px 0;
+
+}
+
 
 #submit{
-
-    margin-right: auto;
-    margin-left: auto;
+    margin-left: 97px;
+}
+.input,span{
+font-family:arial
 }
 
 #submit:hover {
@@ -64,65 +91,6 @@ table.center {
   margin-left: auto; 
   margin-right: auto;
 }
-
- .loader,
-        .loader:after {
-            border-radius: 50%;
-            width: 10em;
-            height: 10em;
-        }
-        .loader {            
-            margin: 60px auto;
-            font-size: 10px;
-            position: relative;
-            text-indent: -9999em;
-            border-top: 1.1em solid rgba(255, 255, 255, 0.2);
-            border-right: 1.1em solid rgba(255, 255, 255, 0.2);
-            border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
-            border-left: 1.1em solid #ffffff;
-            -webkit-transform: translateZ(0);
-            -ms-transform: translateZ(0);
-            transform: translateZ(0);
-            -webkit-animation: load8 1.1s infinite linear;
-            animation: load8 1.1s infinite linear;
-        }
-        @-webkit-keyframes load8 {
-            0% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-            100% {
-                -webkit-transform: rotate(360deg);
-                transform: rotate(360deg);
-            }
-        }
-        @keyframes load8 {
-            0% {
-                -webkit-transform: rotate(0deg);
-                transform: rotate(0deg);
-            }
-            100% {
-                -webkit-transform: rotate(360deg);
-                transform: rotate(360deg);
-            }
-        }
-        #loadingDiv {
-            position:absolute;;
-            top:0;
-            left:0;
-            width:100%;
-            height:100%;
-            background-color:#C0C0C0;
-            
-            
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 9999999;
-            
-        }
         
 </style>
 </head>
@@ -172,36 +140,36 @@ table.center {
     </div>
   </div>
 </div>
- 
-<div id="loader">
-
-</div>
 
    <center>  <span id=res style="color:green;"></span></center>
-
-      <tr>
+<div class="whole-page" style="height: auto !important;">
+<table  style="height: auto !important;">
+     
    <#assign cnt=0>
    <#assign opt1=0>
    
      <#list questions as question>
         <#assign cnt++>
-   <td><b><span> ${cnt}. ${question.question}</span> </b><br/></td>
+         <tr>
+   <td class="question">
+   <span> ${cnt}. ${question.question}</span>
+   </td>
     </tr>
   
+    <tr> 
    <#list question.options as opt>
-    <table border="0" cellpadding="0" cellspacing="0">
-      <tbody><tr> 
    
-    <td><b>${opt.option}.)</b><label><input type="radio" name="option${opt.qid.id}" data-id="${opt.id}" > ${opt.opt}</label></td>
-       <td><label><span class="option" id="optionId${opt.id}"></span><label></td>
+    <td class="td-option">
+    ${opt.option}.)<label><p><input type="radio" class="options" name="option${opt.qid.id}" data-id="${opt.id}" > ${opt.opt}</p></label>
+      <span class="option" id="optionId${opt.id}"></span>
+      </td>
    </tr>
-   </tbody></table>
     </#list>
     </#list>
-     <input type="hidden" id="page" value=${cnt} />   
      <tr>
    <td><input type="submit" id="submit" class="btn btn-secondary" value="Submit"></td></t>
    </tr>
+   </div>
   </table>
  </form>
  <script src="/js/quiz.js"></script>
