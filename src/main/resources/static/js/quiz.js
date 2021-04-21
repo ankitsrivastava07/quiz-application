@@ -31,7 +31,7 @@ function submit(list) {
 			//$('#response').html("<img src='/images/loading.gif' />");
 		},
 		success: function(response) {
-			//removeLoader();
+			//removeLoader()
 			$(response).each(function(index, item) {
 				var text = $("#res").html();
 				$('#marks-msg').html("Number of correct answers ");
@@ -41,10 +41,21 @@ function submit(list) {
 				$('#unAnswered').html(item.unAnswered);
 				$('#result').html(item.result);
 
-				$("#modal-fade").modal("show");
+			});
+
+			$(".option").hide("")
+			$(document).ready(function() {
+				
+				$(response.optionIds).each(function(index, optionId) {
+					var id = "#optionId" + optionId
+					$(id).html("&nbsp;&nbsp;<img src='/images/checked.png'>");
+
+				});
 
 			});
 
+			$(".option").show("")
+			$("#modal-fade").modal("show");
 			window.scrollTo(0, 0);
 
 		},
@@ -171,7 +182,7 @@ $(document).ready(function() {
 
 			$.ajax({
 				type: "POST",
-				url: "/quiz/add-question",
+				url: "/add-question",
 				contentType: "application/json",
 				data: JSON.stringify(formData),
 
@@ -228,7 +239,7 @@ function removeLoader() {
 function showGIF() {
 
 	//$('.center').hide();
-	
+
 	setTimeout(removeLoader, 200); //wait for page load PLUS two seconds.
 
 }

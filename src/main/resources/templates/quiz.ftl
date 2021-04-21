@@ -1,16 +1,18 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
   <title>Java Quiz</title>
+
+<script src="/js/script.js"></script>
+
 <script src="/js/script.js"></script>
 <script src="/js/jquery.validate.js"></script>
 
 <link rel="stylesheet" href="/js/bootstrap.min.css" >
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/popper.min.js"></script>
-  <style>
+
+    <style>
 
 #submit{
 
@@ -128,8 +130,6 @@ table.center {
 <body  id="gif" style="margin:0;">
  <form id="quizForm" method="post">
  
-  <table class='center' cellpadding="0" cellspacing="0" border="0" width="100%">
-
  <div class="modal fade" id="modal-fade" tabindex="-3" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -182,8 +182,6 @@ table.center {
       <tr>
    <#assign cnt=0>
    <#assign opt1=0>
-   <#assign str = "ABCDEF">
-   <#assign asci=0>
    
      <#list questions as question>
         <#assign cnt++>
@@ -194,12 +192,11 @@ table.center {
     <table border="0" cellpadding="0" cellspacing="0">
       <tbody><tr> 
    
-    <td><b>${str[asci]}.)</b><label><input type="radio" class="options" name="option${opt.qid.id}" data-id="${opt.id}" value="checkbox${opt.id}" > ${opt.opt}</label></td>
-      <#assign asci++>
+    <td><b>${opt.option}.)</b><label><input type="radio" name="option${opt.qid.id}" data-id="${opt.id}" > ${opt.opt}</label></td>
+       <td><label><span class="option" id="optionId${opt.id}"></span><label></td>
    </tr>
    </tbody></table>
     </#list>
-     <#assign asci=0>
     </#list>
      <input type="hidden" id="page" value=${cnt} />   
      <tr>

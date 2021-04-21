@@ -23,10 +23,12 @@ public class OptionsEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String opt;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "qid", referencedColumnName = "id")
 	private QuestionEntity qid;
 
 	@Column(name = "is_correct", columnDefinition = "boolean default false")
 	private Boolean isCorrect;
+	@Column(name = "option")
+	private Character option;
 }

@@ -9,4 +9,5 @@ public class OptionDto {
 	private String opt;
 	private QuestionDto qid;
 	private Boolean isCorrect;
+	private Character option;
 }

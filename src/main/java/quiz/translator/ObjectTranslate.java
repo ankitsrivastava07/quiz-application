@@ -32,7 +32,7 @@ public class ObjectTranslate {
 	}
 
 	public QuestionDto translateToQuestionDto(CreateQuestion question) {
-
+		int ascii = 65;
 		QuestionDto questionDto = new QuestionDto();
 		AnswersDto answer = new AnswersDto();
 		List<OptionDto> list = new ArrayList<>();
@@ -40,24 +40,28 @@ public class ObjectTranslate {
 		Map<String, OptionDto> map = new HashMap<>();
 
 		OptionDto opt1 = new OptionDto();
+		opt1.setOption((char) ascii++);
 		opt1.setOpt(question.getOption1());
 		opt1.setIsCorrect(Boolean.FALSE);
 		map.put("option1", opt1);
 		list.add(opt1);
 
 		OptionDto opt2 = new OptionDto();
+		opt2.setOption((char) ascii++);
 		opt2.setOpt(question.getOption2());
 		opt2.setIsCorrect(Boolean.FALSE);
 		map.put("option2", opt2);
 		list.add(opt2);
 
 		OptionDto opt3 = new OptionDto();
+		opt3.setOption((char) ascii++);
 		opt3.setOpt(question.getOption3());
 		opt3.setIsCorrect(Boolean.FALSE);
 		map.put("option3", opt3);
 		list.add(opt3);
 
 		OptionDto opt4 = new OptionDto();
+		opt4.setOption((char) ascii++);
 		opt4.setOpt(question.getOption4());
 		opt4.setIsCorrect(Boolean.FALSE);
 		map.put("option4", opt4);
@@ -83,6 +87,7 @@ public class ObjectTranslate {
 		questionDto.getOptions().stream().forEach(opt -> {
 
 			OptionsEntity op = new OptionsEntity();
+			op.setOption(opt.getOption());
 			op.setOpt(opt.getOpt());
 			op.setIsCorrect(opt.getIsCorrect());
 			optionEntity.add(op);
