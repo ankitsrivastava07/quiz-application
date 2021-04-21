@@ -8,13 +8,14 @@ $("#quizForm").submit(function() {
 		selectedOptions = {
 
 			"optionId": $(this).attr('data-id'),
+			"questionId": $(this).val()
 		}
 		list.push(selectedOptions);
 
 	});
 
 	submit(list)
-	$("#quizForm")[0].reset();
+	//$("#quizForm")[0].reset();
 	return false
 });
 
@@ -26,12 +27,7 @@ function submit(list) {
 		dataType: "json",
 		contentType: "application/json",
 		data: JSON.stringify(list),
-		beforeSend: function() {
-			//showGIF();
-			//$('#response').html("<img src='/images/loading.gif' />");
-		},
 		success: function(response) {
-			//removeLoader()
 			$(response).each(function(index, item) {
 				var text = $("#res").html();
 				$('#marks-msg').html("Number of correct answers ");
@@ -45,10 +41,20 @@ function submit(list) {
 
 			$(".option").hide("")
 			$(document).ready(function() {
-				
-				$(response.optionIds).each(function(index, optionId) {
+
+				$(response.correctOptionIds).each(function(index, optionId) {
 					var id = "#optionId" + optionId
 					$(id).html("&nbsp;&nbsp;<img src='/images/checked.png'>");
+
+				});
+
+			});
+
+			$(document).ready(function() {
+
+				$(response.wrongAnswerIds).each(function(index, optionId) {
+					var wrong_answer = "#wrong_answer" + optionId;
+					$(wrong_answer).html("&nbsp;&nbsp;<img src='/images/cross_image.png'>");
 
 				});
 
@@ -68,7 +74,6 @@ function submit(list) {
 }
 
 $(document).ready(function() {
-
 
 	$("#add-question").validate({
 		ignoreTitle: true,

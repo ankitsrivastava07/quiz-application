@@ -13,9 +13,6 @@
 <script src="/js/popper.min.js"></script>
 
     <style>
-  
-    
-
 .td-option{
 padding-top: 0px;
     padding-right: 7px;
@@ -160,8 +157,9 @@ table.center {
    <#list question.options as opt>
    
     <td class="td-option">
-    ${opt.option}.)<label><p><input type="radio" class="options" name="option${opt.qid.id}" data-id="${opt.id}" > ${opt.opt}</p></label>
+    ${opt.option}.)<label><p><input type="radio" class="options" id="qid${opt.qid.id}" name="option${opt.qid.id}" data-id="${opt.id}" value="${opt.qid.id}"> ${opt.opt}</p></label>
       <span class="option" id="optionId${opt.id}"></span>
+      <span class="option" id="wrong_answer${opt.id}"></span>
       </td>
    </tr>
     </#list>

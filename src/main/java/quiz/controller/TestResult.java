@@ -12,5 +12,7 @@ public class TestResult {
 	private String unAnswered;
 	private String marks;
 	private String result;
-	private List<Long> optionIds;
+	private List<Long> correctOptionIds;
+	private List<Long> wrongAnswerIds;
+
 }

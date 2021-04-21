@@ -36,29 +36,39 @@ public class QuizServiceImpl implements QuizService {
 		Long totalQuestions = questionRepository.countTotalQuestions();
 
 		List<Character> list = new ArrayList<>();
-		List<Long> optionIds = new ArrayList<>();
-
-		options.forEach(opt -> {
-			optionIds.add(opt.getId());
-		});
+		List<Long> correctOptionIds = new ArrayList<>();
+		List<Long> wrondAnswerIds = new ArrayList<>();
 
 		Map<Long, Boolean> map = new HashMap<>();
+		Map<Long, Long> questionAndOptions = new HashMap<>();
 
-		options.stream().forEach(opt -> map.put(opt.getId(), true));
+		options.stream().forEach(opt -> {
+			map.put(opt.getId(), true);
+
+			questionAndOptions.put(opt.getQid().getId(), opt.getId());
+
+		});
 
 		TestResult result = new TestResult();
 
 		for (QuizSubmit quizSubmit : selectedOptions) {
 
 			long optionId = quizSubmit.getOptionId();
+			long questionId=quizSubmit.getQuestionId();
 
-			if (map.containsKey(optionId) && map.get(optionId) == true)
+			if (map.containsKey(optionId) && map.get(optionId) == true) {
 				correctAnswer++;
-			else
+				correctOptionIds.add(optionId);
+			} else {
 				inCorrect++;
+				Long answerId = questionAndOptions.get(questionId);
+				correctOptionIds.add(answerId);
+				wrondAnswerIds.add(optionId);
+			}
 
 		}
-		result.setOptionIds(optionIds);
+		result.setCorrectOptionIds(correctOptionIds);
+		result.setWrongAnswerIds(wrondAnswerIds);
 		result.setAnswered("Answered  " + (correctAnswer + inCorrect));
 		result.setMarks(String.valueOf(correctAnswer));
 		result.setMessage("Total questions " + totalQuestions);
