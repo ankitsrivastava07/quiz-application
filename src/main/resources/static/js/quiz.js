@@ -30,11 +30,11 @@ function submit(list) {
 		success: function(response) {
 			$(response).each(function(index, item) {
 				var text = $("#res").html();
-				$('#marks-msg').html("Number of correct answers ");
-				$('#marks').html(item.marks);
+				
+				$('#answered').html("Number of correct answers "+item.answered);
 
-				$('#answered').html("Given answers " + item.answered);
-				$('#unAnswered').html(item.unAnswered);
+				$('#marks').html(item.marks);
+				$('#unanswered').html("Un answered of given questions " +item.unAnswered);
 				$('#result').html(item.result);
 
 			});

@@ -53,6 +53,9 @@ input.options {
     width: 15px;
     cursor: pointer;
 }
+.test-marks{
+line-height: 1.6;
+}
 
 #modal-fade{
 
@@ -108,25 +111,19 @@ table.center {
         <div class="test-marks">
         <div>
         <label><span id="marks-msg" style="color:green;"></span><label>
-        <span id="marks" style="color:green; text-align: center;"></span>
+        <span id="answered" style="color:green; text-align: center;"></span>
         </div>
         </div>
 
-         <div>
+          <div>
         <div>
-        <span id=answered style="color:green;"></span>
+        <span id="unanswered" style="color:green;"></span>
         </div>
         </div>
         
           <div>
         <div>
-        <span id=unanswered style="color:green;"></span>
-        </div>
-        </div>
-        
-          <div>
-        <div>
-        <span id=result style="color:green;"></span>
+        <span id="result" style="color:green;"></span>
         </div>
         </div>
                                         
