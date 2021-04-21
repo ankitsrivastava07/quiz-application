@@ -39,7 +39,8 @@ function submit(list) {
 
 			});
 
-			$(".option").hide("")
+			$(".option").html("");
+
 			$(document).ready(function() {
 
 				$(response.correctOptionIds).each(function(index, optionId) {
@@ -51,7 +52,6 @@ function submit(list) {
 			});
 
 			$(document).ready(function() {
-
 				$(response.wrongAnswerIds).each(function(index, optionId) {
 					var wrong_answer = "#wrong_answer" + optionId;
 					$(wrong_answer).html("&nbsp;&nbsp;<img src='/images/cross_image.png'>");
