@@ -26,7 +26,7 @@ public class QuestionEntity {
 	private Long id;
 	private String question;
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "qid", referencedColumnName = "id")
 	private List<OptionsEntity> options;
 

@@ -11,7 +11,7 @@ import quiz.service.QuizService;
 import quiz.translator.ObjectTranslate;
 
 @RestController
-@RequestMapping("quiz")
+@RequestMapping()
 @AllArgsConstructor
 public class QuestionController {
 
@@ -21,9 +21,8 @@ public class QuestionController {
 
 	@PostMapping("/add-question")
 	public void submit(@RequestBody CreateQuestion question) {
-		QuestionDto questionDto = objectTranslator.translateToQuestionDto(question);
 		
-		quizService.createQuestion(questionDto);
+		quizService.createQuestion(objectTranslator.translateToQuestionDto(question));
 	}
 
 }

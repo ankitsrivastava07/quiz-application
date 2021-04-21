@@ -2,6 +2,7 @@ package quiz.service;
 
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,13 @@ public class QuizServiceImpl implements QuizService {
 		List<OptionsEntity> options = optionRepository.getAllCorrectAnswers(Boolean.TRUE);
 		Long totalQuestions = questionRepository.countTotalQuestions();
 
+		List<Character> list = new ArrayList<>();
+		List<Long> optionIds = new ArrayList<>();
+
+		options.forEach(opt -> {
+			optionIds.add(opt.getId());
+		});
+
 		Map<Long, Boolean> map = new HashMap<>();
 
 		options.stream().forEach(opt -> map.put(opt.getId(), true));
@@ -42,15 +50,15 @@ public class QuizServiceImpl implements QuizService {
 
 		for (QuizSubmit quizSubmit : selectedOptions) {
 
-			long questionId = quizSubmit.getOptionId();
+			long optionId = quizSubmit.getOptionId();
 
-			if (map.containsKey(questionId) && map.get(questionId) == true)
+			if (map.containsKey(optionId) && map.get(optionId) == true)
 				correctAnswer++;
 			else
 				inCorrect++;
 
 		}
-
+		result.setOptionIds(optionIds);
 		result.setAnswered("Answered  " + (correctAnswer + inCorrect));
 		result.setMarks(String.valueOf(correctAnswer));
 		result.setMessage("Total questions " + totalQuestions);

@@ -1,5 +1,6 @@
 package quiz.controller.viewcontroller;
 
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,12 +21,11 @@ public class ViewController {
 
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("quiz");
-
 		mv.addObject("questions", quizService.getAllQuestions());
 
 		return mv;
 	}
-	
+
 	@GetMapping("/add-question")
 	public ModelAndView addQuestionView() {
 
