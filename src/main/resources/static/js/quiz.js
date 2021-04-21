@@ -60,7 +60,6 @@ function submit(list) {
 
 			});
 
-			$(".option").show("")
 			$("#modal-fade").modal("show");
 			window.scrollTo(0, 0);
 
