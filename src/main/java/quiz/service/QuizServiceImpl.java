@@ -69,7 +69,7 @@ public class QuizServiceImpl implements QuizService {
 		}
 		result.setCorrectOptionIds(correctOptionIds);
 		result.setWrongAnswerIds(wrondAnswerIds);
-		result.setAnswered((correctAnswer + inCorrect));
+		result.setAnswered((correctAnswer));
 		result.setMarks(String.valueOf(correctAnswer));
 		result.setMessage("Total questions " + totalQuestions);
 		result.setResult("Result " + correctAnswer + "/" + "" + totalQuestions + "(" +
