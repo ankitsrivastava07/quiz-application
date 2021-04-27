@@ -4,8 +4,6 @@
   <title>Java Quiz</title>
 
 <script src="/js/script.js"></script>
-<script src="/js/jquery.validate.js"></script>
-
 <link rel="stylesheet" href="/js/bootstrap.min.css" >
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/popper.min.js"></script>
