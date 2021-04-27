@@ -1,6 +1,9 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta name="theme-color" content="#2299c5">
+
   <title>Java Quiz</title>
 
 <script src="/js/script.js"></script>
@@ -18,7 +21,7 @@ padding-top: 0px;
 }
 
 .question{
-padding-left: 82px;
+padding-left: 80px;
 }
 
 .whole-page{
@@ -83,30 +86,61 @@ line-height: 1.6;
 text-align: center;
 }
 
-
-table.center {
-  margin-left: auto; 
-  margin-right: auto;
+@media (max-width: 992px) {
+ 
+ .whole-page{
+   
+font-size: 15px;
+width: auto;
+  height: auto;
+  display:block;
+    }
 }
+@media (max-width: 992px) {
+ 
+ .question{
+ top: 0;
+padding-left:10px;
+  width: auto;
+  height: auto;
 
+   font-stretch: normal;
+ }
+}
 
 @media screen and (max-width: 992px) {
-  .question,.td-option {
-    flex: 50%;
-  }
+ 
+ .td-option{
+ top: 0;
+ left: 0;
+   padding-left: 25px;
+  width: 100%;
+  height: auto;
+   font-stretch: normal;
+ }
 }
 
-@media screen and (max-width: 600px) {
-  .row {
-    flex-direction: column;
-  }
+@media (max-width: 992px) {
+ 
+ .test-marks{
+   margin-left:20px;
+padding:10px;
+  width: auto;
+  height: auto;
+ 
+line-height: 1.6;
+
+font-size: 20px;
+   font-stretch: normal;
+ }
 }
-@media screen and (max-width: 600px) {
-  .row {
-    flex-direction: column;
-  }
+
+@media (max-width: 992px) {
+ #submit{
+   margin-left: 15px;
+ }
 }
-        
+
 </style>
 </head>
 
@@ -151,17 +185,17 @@ table.center {
 </div>
 
    <center>  <span id=res style="color:green;"></span></center>
-<div class="whole-page" style="height: auto !important;">
-<table  style="height: auto !important;">
+<div class="whole-page">
+<table>
      
    <#assign cnt=0>
    <#assign opt1=0>
    
      <#list questions as question>
         <#assign cnt++>
-         <tr class="row">
+         <tr>
    <td class="question">
-   <span> ${cnt}. ${question.question}</span>
+   <span><p> ${cnt}. ${question.question} </p></span>
    </td>
     </tr>
   
@@ -169,7 +203,7 @@ table.center {
    <#list question.options as opt>
    
     <td class="td-option">
-    ${opt.option}.)<label><p><input type="radio" class="options" id="qid${opt.qid.id}" name="option${opt.qid.id}" data-id="${opt.id}" value="${opt.qid.id}"> ${opt.opt}</p></label>
+    <label><p>${opt.option}.)<input type="radio" class="options" id="qid${opt.qid.id}" name="option${opt.qid.id}" data-id="${opt.id}" value="${opt.qid.id}"> ${opt.opt}</p></label>
       <span class="option" id="optionId${opt.id}"></span>
       <span class="option" id="wrong_answer${opt.id}"></span>
       </td>
