@@ -4,8 +4,6 @@
   <title>Java Quiz</title>
 
 <script src="/js/script.js"></script>
-
-<script src="/js/script.js"></script>
 <script src="/js/jquery.validate.js"></script>
 
 <link rel="stylesheet" href="/js/bootstrap.min.css" >
@@ -13,6 +11,7 @@
 <script src="/js/popper.min.js"></script>
 
     <style>
+    
 .td-option{
 padding-top: 0px;
     padding-right: 7px;
@@ -91,6 +90,24 @@ table.center {
   margin-left: auto; 
   margin-right: auto;
 }
+
+
+@media screen and (max-width: 992px) {
+  .question,.td-option {
+    flex: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .row {
+    flex-direction: column;
+  }
+}
+@media screen and (max-width: 600px) {
+  .row {
+    flex-direction: column;
+  }
+}
         
 </style>
 </head>
@@ -144,7 +161,7 @@ table.center {
    
      <#list questions as question>
         <#assign cnt++>
-         <tr>
+         <tr class="row">
    <td class="question">
    <span> ${cnt}. ${question.question}</span>
    </td>
