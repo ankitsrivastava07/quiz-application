@@ -56,6 +56,7 @@ input.options {
     height: 15px;
     width: 15px;
     cursor: pointer;
+    vertical-align: -2px;
 }
 .test-marks{
 line-height: 1.6;
@@ -93,6 +94,7 @@ text-align: center;
 @media (max-width: 992px) {
  
   .whole-page{
+  
   text-align:justify;
    padding-right: 30px;
    padding-left: 10px;
@@ -103,7 +105,8 @@ text-align: center;
    line-height:1.7;  
    font-size:15px;
    display:block;
-     }
+     
+    }
 }
 @media (max-width: 992px) {
  
@@ -122,6 +125,11 @@ font-size:15px;
 @media screen and (max-width: 992px) {
  
   .td-option{
+
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+    vertical-align: -2px;
   text-align:justify;
   padding-left: 10px;
   padding-right: 10px;
@@ -135,6 +143,7 @@ font-size:15px;
 @media (max-width: 992px) {
  
   .test-marks{
+  text-align:justify;
     margin-left:20px;
     padding:10px;
    width: auto;
@@ -142,7 +151,7 @@ font-size:15px;
    
 line-height: 1.6;
 
-font-size: 20px;
+font-size: 16px;
     font-stretch: normal;
   }
 }
@@ -173,18 +182,15 @@ font-size: 20px;
         <label><span id="marks-msg" style="color:green;"></span><label>
         <span id="answered" style="color:green; text-align: center;"></span>
         </div>
-        </div>
-
-          <div>
-        <div>
-        <span id="unanswered" style="color:green;"></span>
-        </div>
+        
+         <div>
+        <label><span id="unanswered" style="color:green;"></span><label>
         </div>
         
-          <div>
         <div>
-        <span id="result" style="color:green;"></span>
+       <label> <span id="result" style="color:green;"></span><label>
         </div>
+        
         </div>
                                         
       </div>
@@ -214,7 +220,7 @@ font-size: 20px;
    <#list question.options as opt>
    
     <td class="td-option">
-    <p>${opt.option}.)<input type="radio" class="option" id="qid${opt.qid.id}" name="option${opt.qid.id}" data-id="${opt.id}" value="${opt.qid.id}">${opt.opt}
+    <p>${opt.option}.)<input type="radio" class="options" id="qid${opt.qid.id}" name="option${opt.qid.id}" data-id="${opt.id}" value="${opt.qid.id}">${opt.opt}
       <span class="answer" id="correctOpt${opt.id}">
       </span>
       </td>
