@@ -101,7 +101,7 @@ text-align: center;
    box-sizing: border-box;
    text-align:justify;
    line-height:1.7;  
-   font-size:14px;
+   font-size:15px;
    display:block;
      }
 }
@@ -109,11 +109,12 @@ text-align: center;
  
   .question{
   top: 0;
-padding-left: 10px;
-text-align:justify;
+   padding-left: 0px;
+    padding-right: 10px;
+   text-align:justify;
    width: auto;
    height: auto;
-
+font-size:15px;
     font-stretch: normal;
   }
 }
@@ -122,8 +123,10 @@ text-align:justify;
  
   .td-option{
   text-align:justify;
-    padding-left: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
    width: 100%;
+   font-size:15px;
    height: auto;
     font-stretch: normal;
   }
@@ -149,7 +152,6 @@ font-size: 20px;
     margin-left: 15px;
   }
 }
-
 </style>
 </head>
 
