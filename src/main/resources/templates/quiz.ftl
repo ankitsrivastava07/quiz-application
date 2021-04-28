@@ -13,10 +13,15 @@
 
     <style>
     
+.whole-page{
+  text-align:justify;
+   line-height:1.7;  
+   font-size:15px;
+}
+    
 .td-option{
 padding-top: 0px;
     padding-right: 7px;
-    padding-bottom: 7px;
     padding-left: 97px;
 }
 
@@ -27,7 +32,7 @@ padding-left: 80px;
 .whole-page{
 
     margin-top: 0px;
-    margin-right: 0px;
+    margin-right: 10px;
     margin-bottom: 10px;
 
 border:0;
@@ -35,7 +40,6 @@ border:0;
 padding:10px 0;
 
 }
-
 
 #submit{
     margin-left: 97px;
@@ -88,57 +92,62 @@ text-align: center;
 
 @media (max-width: 992px) {
  
- .whole-page{
-   
-font-size: 15px;
-width: auto;
-  height: auto;
-  display:block;
-    }
+  .whole-page{
+  text-align:justify;
+   padding-right: 30px;
+   padding-left: 10px;
+   width: 100%;
+   padding: 0 5%;
+   box-sizing: border-box;
+   text-align:justify;
+   line-height:1.7;  
+   font-size:14px;
+   display:block;
+     }
 }
 @media (max-width: 992px) {
  
- .question{
- top: 0;
-padding-left:10px;
-  width: auto;
-  height: auto;
+  .question{
+  top: 0;
+padding-left: 10px;
+text-align:justify;
+   width: auto;
+   height: auto;
 
-   font-stretch: normal;
- }
+    font-stretch: normal;
+  }
 }
 
 @media screen and (max-width: 992px) {
  
- .td-option{
- top: 0;
- left: 0;
-   padding-left: 25px;
-  width: 100%;
-  height: auto;
-   font-stretch: normal;
- }
+  .td-option{
+  text-align:justify;
+    padding-left: 15px;
+   width: 100%;
+   height: auto;
+    font-stretch: normal;
+  }
 }
 
 @media (max-width: 992px) {
  
- .test-marks{
-   margin-left:20px;
-padding:10px;
-  width: auto;
-  height: auto;
- 
+  .test-marks{
+    margin-left:20px;
+    padding:10px;
+   width: auto;
+   height: auto;
+   
 line-height: 1.6;
 
 font-size: 20px;
-   font-stretch: normal;
- }
+    font-stretch: normal;
+  }
 }
-
+ 
 @media (max-width: 992px) {
- #submit{
-   margin-left: 15px;
- }
+  #submit{
+    margin-left: 15px;
+  }
 }
 
 </style>
@@ -146,7 +155,7 @@ font-size: 20px;
 
 <body  id="gif" style="margin:0;">
  <form id="quizForm" method="post">
- 
+ <span id="loading-gif"></span>
  <div class="modal fade" id="modal-fade" tabindex="-3" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -184,7 +193,7 @@ font-size: 20px;
   </div>
 </div>
 
-   <center>  <span id=res style="color:green;"></span></center>
+   <center>  <span id="res" style="color:green;"></span></center>
 <div class="whole-page">
 <table>
      
@@ -203,9 +212,9 @@ font-size: 20px;
    <#list question.options as opt>
    
     <td class="td-option">
-    <label><p>${opt.option}.)<input type="radio" class="options" id="qid${opt.qid.id}" name="option${opt.qid.id}" data-id="${opt.id}" value="${opt.qid.id}"> ${opt.opt}</p></label>
-      <span class="option" id="optionId${opt.id}"></span>
-      <span class="option" id="wrong_answer${opt.id}"></span>
+    <p>${opt.option}.)<input type="radio" class="option" id="qid${opt.qid.id}" name="option${opt.qid.id}" data-id="${opt.id}" value="${opt.qid.id}">${opt.opt}
+      <span class="answer" id="correctOpt${opt.id}">
+      </span>
       </td>
    </tr>
     </#list>
