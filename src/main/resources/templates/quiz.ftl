@@ -267,7 +267,7 @@ body:opacity:0.3;
    </tr>
    
     </#list>
-   <td><span class="optionAttemp" id="notAns${question.id}" style ='color: grey;'></span></td>
+   <td><b><span class="optionAttemp" id="notAns${question.id}" style ='color: grey;'></span></b></td>
     </#list>
      <tr>
    <td><input type="submit" id="submit" class="btn btn-secondary" value="Submit"></td></t>
