@@ -3,21 +3,28 @@
 <head>
  <meta name="viewport" content="width=device-width,initial-scale=1">
  <meta name="theme-color" content="#2299c5">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Java Quiz</title>
 
 <script src="/js/script.js"></script>
+<script type="text/javascript" src="/js/loading-spinner.js"></script>
 <link rel="stylesheet" href="/js/bootstrap.min.css" >
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/popper.min.js"></script>
-
-    <style>
-    
+     <style>
+     
 .whole-page{
   text-align:justify;
    line-height:1.7;  
    font-size:15px;
+   
 }
+ .optionAttemp{
+ margin-left: 97px;
+ vertical-align: text-top;
+ }   
     
 .td-option{
 padding-top: 0px;
@@ -27,6 +34,7 @@ padding-top: 0px;
 
 .question{
 padding-left: 80px;
+    padding-bottom: 0px;
 }
 
 .whole-page{
@@ -53,10 +61,12 @@ font-family:arial
 }
 
 input.options {
+    
     height: 15px;
     width: 15px;
     cursor: pointer;
     vertical-align: -2px;
+    
 }
 .test-marks{
 line-height: 1.6;
@@ -76,6 +86,7 @@ line-height: 1.6;
 
     margin-right: auto;
     margin-left: auto;
+}
 
 }
 
@@ -108,6 +119,7 @@ text-align: center;
      
     }
 }
+
 @media (max-width: 992px) {
  
   .question{
@@ -142,6 +154,21 @@ font-size:15px;
 
 @media (max-width: 992px) {
  
+   .optionAttemp{
+    text-align:justify;
+    padding:2px;
+    line-height: 1.6;
+    margin-left: auto;
+height: auto;
+    font-size: 12px;
+        margin: 0 10px;
+
+    font-stretch: normal;
+  }
+}
+
+@media (max-width: 992px) {
+ 
   .test-marks{
   text-align:justify;
     margin-left:20px;
@@ -158,53 +185,33 @@ font-size: 16px;
  
 @media (max-width: 992px) {
   #submit{
-    margin-left: 15px;
+    margin-left: 13px;
   }
 }
+
+#gif{
+ 
+ margin:0;
+ position:relative;
+ align-text:center;
+
+}
+
+#loading{
+position:relative;
+body:opacity:0.3;
+}
+
 </style>
 </head>
-
-<body  id="gif" style="margin:0;">
+<body>
  <form id="quizForm" method="post">
- <span id="loading-gif"></span>
- <div class="modal fade" id="modal-fade" tabindex="-3" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">
-        <div class="test-resutl">Test Result </div>
-        </h5>
-      </div>
-      <div class="modal-body">
-        
-        <div class="test-marks">
-        <div>
-        <label><span id="marks-msg" style="color:green;"></span><label>
-        <span id="answered" style="color:green; text-align: center;"></span>
-        </div>
-        
-         <div>
-        <label><span id="unanswered" style="color:green;"></span><label>
-        </div>
-        
-        <div>
-       <label> <span id="result" style="color:green;"></span><label>
-        </div>
-        
-        </div>
-                                        
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+ <#include "/modal/popup-modal.ftl">
 
    <center>  <span id="res" style="color:green;"></span></center>
 <div class="whole-page">
 <table>
-     
+
    <#assign cnt=0>
    <#assign opt1=0>
    
@@ -222,10 +229,12 @@ font-size: 16px;
     <td class="td-option">
     <p>${opt.option}.)<input type="radio" class="options" id="qid${opt.qid.id}" name="option${opt.qid.id}" data-id="${opt.id}" value="${opt.qid.id}">${opt.opt}
       <span class="answer" id="correctOpt${opt.id}">
-      </span>
+      </span></p>
       </td>
    </tr>
+   
     </#list>
+   <td><span class="optionAttemp" id="notAns${question.id}" style ='color: grey;'></span></td>
     </#list>
      <tr>
    <td><input type="submit" id="submit" class="btn btn-secondary" value="Submit"></td></t>

@@ -34,17 +34,15 @@ public class QuizServiceImpl implements QuizService {
 
 		List<OptionsEntity> options = optionRepository.getAllCorrectAnswers(Boolean.TRUE);
 		Long totalQuestions = questionRepository.countTotalQuestions();
-
-		List<Character> list = new ArrayList<>();
-		List<Long> correctOptionIds = new ArrayList<>();
-		List<Long> wrondAnswerIds = new ArrayList<>();
+		List<Long> allQid = new ArrayList<>();
+		Map<Long, String> correctOptionIds = new HashMap<>();
 
 		Map<Long, Boolean> map = new HashMap<>();
 		Map<Long, Long> questionAndOptions = new HashMap<>();
 
 		options.stream().forEach(opt -> {
 			map.put(opt.getId(), true);
-
+			allQid.add(opt.getQid().getId());
 			questionAndOptions.put(opt.getQid().getId(), opt.getId());
 
 		});
@@ -54,21 +52,32 @@ public class QuizServiceImpl implements QuizService {
 		for (QuizSubmit quizSubmit : selectedOptions) {
 
 			long optionId = quizSubmit.getOptionId();
-			long questionId=quizSubmit.getQuestionId();
+			long questionId = quizSubmit.getQuestionId();
+			
+			StringBuilder correctIcon = new StringBuilder();
+			StringBuilder incorrectIcon = new StringBuilder();
 
 			if (map.containsKey(optionId) && map.get(optionId) == true) {
 				correctAnswer++;
-				correctOptionIds.add(optionId);
+				correctIcon.append(
+						"&nbsp;&nbsp;<img class=img_icon src='/images/correct.png' id = questionId" + questionId + ">");
+
+				correctOptionIds.put(optionId, correctIcon.toString());
 			} else {
 				inCorrect++;
 				Long answerId = questionAndOptions.get(questionId);
-				correctOptionIds.add(answerId);
-				wrondAnswerIds.add(optionId);
+				incorrectIcon.append("&nbsp;&nbsp;<img src='/images/incorrect.png' id = questionId"
+						+ questionId + ">");
+				correctIcon.append(
+						"&nbsp;&nbsp;<img src='/images/correct.png' id = questionId" + questionId + ">");
+
+				correctOptionIds.put(answerId, correctIcon.toString());
+				correctOptionIds.put(optionId, incorrectIcon.toString());
 			}
 
 		}
+		result.setQuestionIds(allQid);
 		result.setCorrectOptionIds(correctOptionIds);
-		result.setWrongAnswerIds(wrondAnswerIds);
 		result.setAnswered((correctAnswer));
 		result.setMarks(String.valueOf(correctAnswer));
 		result.setMessage("Total questions " + totalQuestions);

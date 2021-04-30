@@ -1,6 +1,7 @@
 package quiz.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import lombok.Data;
 
@@ -12,7 +13,7 @@ public class TestResult {
 	private Long unAnswered;
 	private String marks;
 	private String result;
-	private List<Long> correctOptionIds;
-	private List<Long> wrongAnswerIds;
+	private Map<Long, String> correctOptionIds;
+	private List<Long> questionIds; 
 
 }
