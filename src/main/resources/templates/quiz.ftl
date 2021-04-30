@@ -160,7 +160,7 @@ font-size:15px;
     line-height: 1.6;
     margin-left: auto;
 height: auto;
-    font-size: 12px;
+    font-size: 14px;
         margin: 0 10px;
 
     font-stretch: normal;
@@ -206,7 +206,40 @@ body:opacity:0.3;
 </head>
 <body>
  <form id="quizForm" method="post">
- <#include "/modal/popup-modal.ftl">
+
+<div class="modal fade" id="modal-fade" tabindex="-3" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">
+        <div class="test-resutl">Test Result </div>
+        </h5>
+      </div>
+      <div class="modal-body">
+        
+        <div class="test-marks">
+        <div>
+        <label><span id="marks-msg" style="color:green;"></span><label>
+        <span id="answered" style="color:green; text-align: center;"></span>
+        </div>
+        
+         <div>
+        <label><span id="unanswered" style="color:green;"></span><label>
+        </div>
+        
+        <div>
+       <label> <span id="result" style="color:green;"></span><label>
+        </div>
+        
+        </div>
+                                        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
    <center>  <span id="res" style="color:green;"></span></center>
 <div class="whole-page">
