@@ -97,6 +97,7 @@ table.center {
 
 <body  id="gif" style="margin:0;">
  <form id="quizForm" method="post">
+ <div class="whole-page" style="height: auto !important;">
  
  <div class="modal fade" id="modal-fade" tabindex="-3" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -136,7 +137,7 @@ table.center {
 </div>
 
    <center>  <span id=res style="color:green;"></span></center>
-<div class="whole-page" style="height: auto !important;">
+
 <table  style="height: auto !important;">
      
    <#assign cnt=0>
@@ -164,8 +165,8 @@ table.center {
      <tr>
    <td><input type="submit" id="submit" class="btn btn-secondary" value="Submit"></td></t>
    </tr>
-   </div>
   </table>
+   </div>
  </form>
  <script src="/js/quiz.js"></script>
 </body>

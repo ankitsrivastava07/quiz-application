@@ -74,6 +74,10 @@ function submit(list) {
 
 $(document).ready(function() {
 
+$('#btn').on('click', function() {
+    $("#add-question").valid();
+});
+
 	$("#add-question").validate({
 		ignoreTitle: true,
 
