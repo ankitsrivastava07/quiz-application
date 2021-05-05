@@ -10,11 +10,15 @@ function submit(e) {
 		beforeSend: function() {
 
 			var txtMsg = '';
+			var totalOptions = $('.question').length;
+			var selectedOptions=0;
 
-			var selectedOptions = $('input:checkbox:checked').length;
+			$("input[type=radio]:checked").each(function(t) {
+				selectedOptions=selectedOptions+1;
+			})
 
-			if (selectedOptions > 0)
-				txtMsg = "Total number of unanswered questions = " + selectedOptions + ".\n\n";
+			if ((totalOptions- selectedOptions) > 0)
+				txtMsg = "Total number of unanswered questions = " + (totalOptions- selectedOptions) + ".\n\n";
 
 			return confirm(txtMsg + 'Are you sure you want to submit the Test now?');
 
