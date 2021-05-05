@@ -254,7 +254,7 @@ body:opacity:0.3;
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Quiz Alert</h5>
+        <h5 class="modal-title" id="staticBackdropLabel">Basic Quiz Alert</h5>
       </div>
       <div class="modal-body">
         

@@ -49,9 +49,12 @@ $("#quizForm").submit(function() {
 		selectedOptions = selectedOptions + 1;
 	});
 
-	if (totalOptions - selectedOptions > 0)
-		$("#alert-msg1").html("Total number of unanswered questions = " + (totalOptions - selectedOptions) + "</br></br>");
+	var option = parseInt(totalOptions - selectedOptions);
 
+	if (option > 0) {
+		$("#alert-msg1").html("Total number of unanswered questions = " + (totalOptions - selectedOptions) + "</br></br>");
+	}
+	
 	$("#alert-msg2").html("Are you sure you want to submit the Test now?");
 	$("#staticBackdrop").modal("show");
 
