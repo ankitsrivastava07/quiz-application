@@ -9,7 +9,6 @@
   <title>Java Quiz</title>
 
 <script src="/js/script.js"></script>
-<script type="text/javascript" src="/js/loading-spinner.js"></script>
 <link rel="stylesheet" href="/js/bootstrap.min.css" >
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/popper.min.js"></script>
@@ -19,7 +18,6 @@
   text-align:justify;
    line-height:1.7;  
    font-size:15px;
-   
 }
  .optionAttemp{
  margin-left: 97px;
@@ -56,10 +54,6 @@ padding:10px 0;
 font-family:arial
 }
 
-#submit:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-}
-
 input.options {
     
     height: 15px;
@@ -77,10 +71,6 @@ line-height: 1.6;
     margin-right: auto;
     margin-left: auto;
 
-}
-.modal-title{
-  margin-right: auto;
-    margin-left: auto;
 }
 .btn{
 
@@ -169,6 +159,22 @@ height: auto;
 
 @media (max-width: 992px) {
  
+   #submit{
+    line-height: 1.6;
+    padding: 0;
+    margin-left: auto;
+     margin-right: auto;
+     padding-left: auto;
+     padding-right: auto;
+    height: auto;
+    font-size: 14px;
+        margin: auto;
+    font-stretch: normal;
+  }
+}
+
+@media (max-width: 992px) {
+ 
   .test-marks{
   text-align:justify;
     margin-left:20px;
@@ -202,10 +208,68 @@ position:relative;
 body:opacity:0.3;
 }
 
+#OK{
+
+    margin: auto;
+    width: 34%;
+    background-color: #4a90e2;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+    height: 36px;
+    cursor: pointer;
+    line-height: 18px;
+    cursor: pointer;
+    font-size: 14px;
+    border-width: 0;
+}
+
+
+#submit{
+
+    margin: auto;
+   width: 100px;
+    background-color: #4a90e2;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+    height: 36px;
+    cursor: pointer;
+    line-height: 18px;
+    cursor: pointer;
+    font-size: 14px;
+    border-width: 0;
+    margin-left: 97px;
+
+}
+
 </style>
 </head>
 <body>
  <form id="quizForm" method="post">
+
+<div id="modal-confirm">
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Quiz Alert</h5>
+      </div>
+      <div class="modal-body">
+        
+        <label><span id="alert-msg1"></span><label>
+        <label><span id="alert-msg2"></span><label>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="OK">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
 <div class="modal fade" id="modal-fade" tabindex="-3" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
