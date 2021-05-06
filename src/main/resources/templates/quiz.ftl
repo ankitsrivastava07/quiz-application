@@ -363,7 +363,7 @@ body:opacity:0.3;
    <#list question.options as opt>
    
     <td class="td-option">
-    ${opt.option}.)<input type="radio" class="options" id="qid${opt.qid.id}" name="option${opt.qid.id}" data-id="${opt.id}" value="${opt.qid.id}">${opt.opt}
+    ${opt.option}.)<input type="radio" class="options" id="qid${opt.id}" name="option${opt.qid.id}" data-id="${opt.id}" value="${opt.qid.id}">${opt.opt}
       <span class="answer" id="correctOpt${opt.id}">
       </span>
       </td>
