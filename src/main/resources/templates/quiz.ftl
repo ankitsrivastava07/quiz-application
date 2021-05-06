@@ -25,8 +25,13 @@
  }   
     
 .td-option{
-padding-top: 0px;
+   padding-top: 0px;
+    padding: 5px;
     padding-right: 7px;
+    padding-left: 97px;
+    padding: 5px;
+    padding-bottom: inherit;
+    padding-top: 13px;
     padding-left: 97px;
 }
 
@@ -175,6 +180,22 @@ height: auto;
 
 @media (max-width: 992px) {
  
+   #submit{
+    line-height: 1.6;
+    padding: 0;
+    margin-left: auto;
+     margin-right: auto;
+     padding-left: auto;
+     padding-right: auto;
+    height: auto;
+    font-size: 14px;
+        margin: auto;
+    font-stretch: normal;
+  }
+}
+
+@media (max-width: 992px) {
+ 
   .test-marks{
   text-align:justify;
     margin-left:20px;
@@ -208,7 +229,7 @@ position:relative;
 body:opacity:0.3;
 }
 
-#OK{
+.btn-primary{
 
     margin: auto;
     width: 34%;
@@ -223,12 +244,30 @@ body:opacity:0.3;
     font-size: 14px;
     border-width: 0;
 }
+.btn-primary:hover {
+  background-color: #4a90e2;
+}
 
+.bg-secondary{
+
+    width: 34%;
+    background-color: #4a90e2;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
+    height: 36px;
+    cursor: pointer;
+    line-height: 8px;
+    cursor: pointer;
+    text-align:center;
+    font-size: 14px;
+    border-width: 0;
+}
 
 #submit{
 
     margin: auto;
-   width: 100px;
+    width: 100px;
     background-color: #4a90e2;
     border-radius: 2px;
     -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
@@ -250,11 +289,11 @@ body:opacity:0.3;
 
 <div id="modal-confirm">
 <!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" data-backdrop="static" id="alert" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="staticBackdropLabel">Basic Quiz Alert</h5>
+        <h5 class="modal-title">Basic Quiz Alert</h5>
       </div>
       <div class="modal-body">
         
@@ -263,8 +302,8 @@ body:opacity:0.3;
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="close" data-dismiss="modal">Cancel</button>
-        <button type="button" class="btn btn-primary" id="OK">OK</button>
+        <button type="button" class="btn btn-secondary" onclick="closeAlert();" id="close" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" id="OK" onclick="submitTest();">OK</button>
       </div>
     </div>
   </div>
@@ -324,17 +363,17 @@ body:opacity:0.3;
    <#list question.options as opt>
    
     <td class="td-option">
-    <p>${opt.option}.)<input type="radio" class="options" id="qid${opt.qid.id}" name="option${opt.qid.id}" data-id="${opt.id}" value="${opt.qid.id}">${opt.opt}
+    ${opt.option}.)<input type="radio" class="options" id="qid${opt.qid.id}" name="option${opt.qid.id}" data-id="${opt.id}" value="${opt.qid.id}">${opt.opt}
       <span class="answer" id="correctOpt${opt.id}">
-      </span></p>
+      </span>
       </td>
    </tr>
    
     </#list>
-   <td><b><span class="optionAttemp" id="notAns${question.id}" style ='color: grey;'></span></b></td>
+    <td><b><span class="optionAttemp" id="notAns${question.id}" style ='color: grey;'></span></b></td>
     </#list>
      <tr>
-   <td><input type="submit" id="submit" class="btn btn-secondary" value="Submit"></td></t>
+   <td><input type="submit" id="submit" onclick class="btn btn-secondary" value="Submit"></td></t>
    </tr>
    </div>
   </table>

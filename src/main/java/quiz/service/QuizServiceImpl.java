@@ -35,7 +35,10 @@ public class QuizServiceImpl implements QuizService {
 		List<OptionsEntity> options = optionRepository.getAllCorrectAnswers(Boolean.TRUE);
 		Long totalQuestions = questionRepository.countTotalQuestions();
 		List<Long> allQid = new ArrayList<>();
-		Map<Long, String> correctOptionIds = new HashMap<>();
+
+		List<Long> correctOptionIds = new ArrayList<>();
+
+		List<Long> wrongAnswerIds = new ArrayList<>();
 
 		Map<Long, Boolean> map = new HashMap<>();
 		Map<Long, Long> questionAndOptions = new HashMap<>();
@@ -53,30 +56,20 @@ public class QuizServiceImpl implements QuizService {
 
 			long optionId = quizSubmit.getOptionId();
 			long questionId = quizSubmit.getQuestionId();
-			
-			StringBuilder correctIcon = new StringBuilder();
-			StringBuilder incorrectIcon = new StringBuilder();
 
 			if (map.containsKey(optionId) && map.get(optionId) == true) {
 				correctAnswer++;
-				correctIcon.append(
-						"&nbsp;&nbsp;<img class=img_icon src='/images/correct.png' id = questionId" + questionId + ">");
-
-				correctOptionIds.put(optionId, correctIcon.toString());
+				correctOptionIds.add(optionId);
 			} else {
 				inCorrect++;
 				Long answerId = questionAndOptions.get(questionId);
-				incorrectIcon.append("&nbsp;&nbsp;<img src='/images/incorrect.png' id = questionId"
-						+ questionId + ">");
-				correctIcon.append(
-						"&nbsp;&nbsp;<img src='/images/correct.png' id = questionId" + questionId + ">");
-
-				correctOptionIds.put(answerId, correctIcon.toString());
-				correctOptionIds.put(optionId, incorrectIcon.toString());
+				correctOptionIds.add(answerId);
+				wrongAnswerIds.add(optionId);
 			}
 
 		}
 		result.setQuestionIds(allQid);
+		result.setWorngOptionIds(wrongAnswerIds);
 		result.setCorrectOptionIds(correctOptionIds);
 		result.setAnswered((correctAnswer));
 		result.setMarks(String.valueOf(correctAnswer));

@@ -13,7 +13,8 @@ public class TestResult {
 	private Long unAnswered;
 	private String marks;
 	private String result;
-	private Map<Long, String> correctOptionIds;
-	private List<Long> questionIds; 
+	private List<Long> correctOptionIds;
+	private List<Long> worngOptionIds;
+	private List<Long> questionIds;
 
 }
