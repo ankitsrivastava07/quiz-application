@@ -33,13 +33,11 @@
  }   
     
 .td-option{
-   padding-top: 0px;
     padding: 5px;
     padding-right: 7px;
     padding-left: 97px;
     padding: 5px;
     padding-bottom: inherit;
-    padding-top: 13px;
     padding-left: 97px;
 }
 
