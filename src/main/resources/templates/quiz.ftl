@@ -19,6 +19,14 @@
    line-height:1.7;  
    font-size:15px;
 }
+
+.modal-footer {
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+
  .optionAttemp{
  margin-left: 97px;
  vertical-align: text-top;
@@ -243,26 +251,32 @@ body:opacity:0.3;
     cursor: pointer;
     font-size: 14px;
     border-width: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 .btn-primary:hover {
   background-color: #4a90e2;
 }
 
-.bg-secondary{
-
-    width: 34%;
-    background-color: #4a90e2;
-    border-radius: 2px;
-    -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
-    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2);
-    height: 36px;
-    cursor: pointer;
-    line-height: 8px;
+#close{
+ width: 34%;
     cursor: pointer;
     text-align:center;
-    font-size: 14px;
     border-width: 0;
+    margin-left: auto;
+    margin-right: auto;
+
 }
+
+#OK{
+
+    cursor: pointer;
+    text-align:center;
+    border-width: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 
 #submit{
 
