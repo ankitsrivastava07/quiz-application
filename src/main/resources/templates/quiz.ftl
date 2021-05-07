@@ -34,6 +34,9 @@ td .answer{
 
 }
 
+.modal {
+    display: none;    
+}
 
  .optionAttemp{
     text-align: justify;
@@ -48,7 +51,6 @@ text-align: center;
  
  }
  
-    
 .td-option{
     padding: 5px;
     padding-right: 7px;
