@@ -27,10 +27,27 @@
     justify-content: flex-start;
 }
 
+td .answer{
+
+   margin-right: auto;
+    margin-left: auto;
+
+}
+
+
  .optionAttemp{
- margin-left: 97px;
- vertical-align: text-top;
+    text-align: justify;
+    vertical-align: text-top;
  }   
+ 
+ [id^=notAns]{
+text-align: center;
+    margin: auto;
+    margin-left: 96px;
+    padding-right: auto;
+ 
+ }
+ 
     
 .td-option{
     padding: 5px;
